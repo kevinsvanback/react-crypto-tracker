@@ -38,8 +38,8 @@ const Header = () => {
               height: 40,
               marginRight: 15,
             }}>
-              <MenuItem value={`SEK`}>SEK</MenuItem>
-              <MenuItem value={`USD`}>USD</MenuItem>
+              <MenuItem>SEK</MenuItem>
+              <MenuItem>USD</MenuItem>
             </Select>
           </Toolbar>
         </Container>
