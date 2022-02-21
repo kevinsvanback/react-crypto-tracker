@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import HomePage from './pages/HomePage';
 import CoinPage from './pages/CoinPage';
 import { makeStyles } from '@material-ui/core';
+import 'react-alice-carousel/lib/alice-carousel.css';
 
 const useStyles = makeStyles(() => ({
   App: {
