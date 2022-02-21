@@ -7,7 +7,7 @@ const CryptoContext = (props) => {
   const [symbol, setSymbol] = useState('kr');
 
   useEffect(() => {
-    if (currency === 'SEK') setSymbol('kr');
+    if (currency === 'SEK') setSymbol('sek');
     else if (currency === 'USD') setSymbol('$');
   }, [currency]);
 
