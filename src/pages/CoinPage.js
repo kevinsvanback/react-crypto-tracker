@@ -10,7 +10,6 @@ import HTMLReactParser from "html-react-parser";
 const CoinPage = () => {
   const { id } = useParams();
   const [coin, setCoin] = useState();
-  // const [isLoaded, setIsLoaded] = useState(false);
 
   const { currency, symbol } = CryptoState();
 
@@ -22,7 +21,6 @@ const CoinPage = () => {
 
   useEffect(() => {
     fetchCoin();
-    // setIsLoaded(true);
   }, []);
 
   const useStyles = makeStyles((theme) => ({
@@ -43,9 +41,6 @@ const CoinPage = () => {
       alignItems: 'center',
       marginTop: 25,
       borderRight: '2px solid grey'
-    },
-    chart: {
-
     },
     heading: {
       fontWeight: 'bold',
@@ -131,7 +126,6 @@ const CoinPage = () => {
 
           </div>
         </div>
-        {/* chart */}
         <CoinInfo coin={coin} />
       </div>
     </>
