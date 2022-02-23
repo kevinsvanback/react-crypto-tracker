@@ -68,7 +68,7 @@ const CoinInfo = (props) => {
               data={{
                 labels: historicalData.map(coin => {
                   let date = new Date(coin[0]);
-                  let time = date.getHours() > 12 ? `${date.getHours() - 12}:${date.getMinutes()} PM` : `${date.getHours()}:${date.getMinutes()} AM`;
+                  let time = date.getHours() > 12 ? `${date.getHours() - 12}:${date.getMinutes().toString().padStart(2, '0')} PM` : `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')} AM`;
 
                   return days === 1 ? time : date.toLocaleDateString();
                 }),

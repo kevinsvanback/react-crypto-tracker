@@ -2,20 +2,20 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CoinList } from '../config/api';
-import { CryptoState } from '../contexts/CryptoContext';
 import { createTheme, ThemeProvider, Typography, Container, TextField, TableContainer, LinearProgress, Table, TableHead, TableRow, TableCell, TableBody, makeStyles, Paper } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
+import { MyContext } from '../contexts/MyContext';
 
 
 const CoinTable = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
-  const [page, setPage] = useState(1);
 
   const navigate = useNavigate();
 
-  const { currency, symbol } = CryptoState();
+  // const { currency, symbol } = CryptoState();
+  const { currency, symbol, page, setPage } = MyContext();
 
   const fetchCoins = async () => {
     setLoading(true);
@@ -29,9 +29,6 @@ const CoinTable = () => {
   useEffect(() => {
     fetchCoins();
   }, [currency]);
-
-  console.log(coins);
-
 
   const darkTheme = createTheme({
     palette: {
@@ -158,6 +155,7 @@ const CoinTable = () => {
         }}
           classes={{ ul: classes.pagination }}
           onChange={(_, value) => {
+            // context
             setPage(value);
             window.scroll(0, 450);
           }} />

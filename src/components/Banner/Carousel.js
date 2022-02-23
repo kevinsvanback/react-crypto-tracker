@@ -2,9 +2,8 @@ import { makeStyles } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
 import { TrendingCoins } from '../../config/api';
-import { CryptoState } from '../../contexts/CryptoContext';
+import { MyContext } from '../../contexts/MyContext';
 import AliceCarousel from 'react-alice-carousel';
 
 const useStyles = makeStyles(() => ({
@@ -31,7 +30,7 @@ const Carousel = () => {
   const [trending, setTrending] = useState([]);
   const classes = useStyles();
 
-  const { currency, symbol } = CryptoState();
+  const { currency, symbol } = MyContext();
 
   const fetchTrendingCoins = async () => {
     const { data } = await axios.get(TrendingCoins(currency));

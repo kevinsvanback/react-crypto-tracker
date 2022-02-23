@@ -3,14 +3,14 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import App from './App';
-import CryptoContext from './contexts/CryptoContext';
+import MyContextProvider from './contexts/MyContext';
 
 
 ReactDOM.render(
   <BrowserRouter>
-    <CryptoContext>
+    <MyContextProvider>
       <App />
-    </CryptoContext>
+    </MyContextProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );
