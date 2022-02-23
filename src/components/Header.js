@@ -25,8 +25,7 @@ const Header = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  // const { currency, setCurrency } = CryptoState();
-  const { currency, setCurrency, page, setPage } = MyContext();
+  const { currency, setCurrency, setPage } = MyContext();
 
   const darkTheme = createTheme({
     palette: {
@@ -38,7 +37,7 @@ const Header = () => {
   });
 
   const onClickHandler = () => {
-    // setPage(1);
+    setPage(1);
     navigate('/');
   };
 

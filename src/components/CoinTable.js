@@ -11,11 +11,10 @@ const CoinTable = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
+  const { currency, symbol, page, setPage } = MyContext();
 
   const navigate = useNavigate();
 
-  // const { currency, symbol } = CryptoState();
-  const { currency, symbol, page, setPage } = MyContext();
 
   const fetchCoins = async () => {
     setLoading(true);
@@ -153,9 +152,9 @@ const CoinTable = () => {
           display: 'flex',
           justifyContent: 'center'
         }}
+          page={page}
           classes={{ ul: classes.pagination }}
           onChange={(_, value) => {
-            // context
             setPage(value);
             window.scroll(0, 450);
           }} />

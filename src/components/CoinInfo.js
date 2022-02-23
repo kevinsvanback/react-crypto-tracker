@@ -5,7 +5,7 @@ import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { HistoricalChart } from '../config/api';
 import { chartDays } from '../config/data';
-import { CryptoState } from '../contexts/CryptoContext';
+import { MyContext } from '../contexts/MyContext';
 import SelectButton from './SelectButton';
 
 Chart.register(...registerables);
@@ -14,7 +14,7 @@ const CoinInfo = (props) => {
   const [historicalData, setHistoricalData] = useState();
   const [days, setDays] = useState(1);
 
-  const { currency } = CryptoState();
+  const { currency } = MyContext();
 
   const fetchHistoricalData = async () => {
     const { data } = await axios.get(HistoricalChart(props.coin.id, days, currency));
