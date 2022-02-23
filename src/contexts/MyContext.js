@@ -4,11 +4,11 @@ const myCtx = createContext();
 
 const MyContextProvider = (props) => {
   const [currency, setCurrency] = useState('SEK');
-  const [symbol, setSymbol] = useState('sek');
+  const [symbol, setSymbol] = useState('SEK');
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (currency === 'SEK') setSymbol('sek');
+    if (currency === 'SEK') setSymbol('SEK');
     else if (currency === 'USD') setSymbol('$');
   }, [currency]);
 

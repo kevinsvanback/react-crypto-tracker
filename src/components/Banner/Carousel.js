@@ -43,6 +43,9 @@ const Carousel = () => {
 
   const items = trending.map(coin => {
     let profit = coin.price_change_percentage_24h >= 0;
+    let symbolIsSek;
+
+    symbol === 'SEK' ? symbolIsSek = true : symbolIsSek = false;
 
     return (
       <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
@@ -61,9 +64,11 @@ const Carousel = () => {
             {profit && '+'}{coin?.price_change_percentage_24h?.toFixed(2)}%
           </span>
         </span>
-        <span style={{ fontSize: 22, fontWeight: 500 }}>
-          {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
-        </span>
+        {symbolIsSek ? <span style={{ fontSize: 22, fontWeight: 500 }}>
+          {numberWithCommas(coin?.current_price.toFixed(2))} {symbol}
+        </span> : <span style={{ fontSize: 22, fontWeight: 500 }}>
+          {symbol}{numberWithCommas(coin?.current_price.toFixed(2))}
+        </span>}
       </Link>
     );
   });

@@ -66,6 +66,9 @@ const CoinTable = () => {
 
   // if (coins.length === 0) return <LinearProgress style={{ backgroundColor: 'gold' }} />;
 
+  let symbolIsSek;
+  symbol === 'SEK' ? symbolIsSek = true : symbolIsSek = false;
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Container style={{ textAlign: 'center' }}>
@@ -121,8 +124,7 @@ const CoinTable = () => {
                         </div>
                       </TableCell>
                       <TableCell align="right">
-                        {symbol}{" "}
-                        {numberWithCommas(row.current_price.toFixed(2))}
+                        {symbolIsSek ? <>{numberWithCommas(row.current_price.toFixed(2))} {symbol}</> : <>{symbol}{numberWithCommas(row.current_price.toFixed(2))}</>}
                       </TableCell>
                       <TableCell
                         align="right"
@@ -134,10 +136,7 @@ const CoinTable = () => {
                         {row.price_change_percentage_24h.toFixed(2)}%
                       </TableCell>
                       <TableCell align="right">
-                        {symbol}{" "}
-                        {numberWithCommas(
-                          row.market_cap.toString().slice(0, -6)
-                        )}M
+                        {symbolIsSek ? <>{numberWithCommas(row.market_cap.toString().slice(0, -6))} M{symbol}</> : <>{symbol}{numberWithCommas(row.market_cap.toString().slice(0, -6))} M</>}
                       </TableCell>
                     </TableRow>
                   );
