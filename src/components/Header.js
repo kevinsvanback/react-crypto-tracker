@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between'
   },
   title: {
-    color: 'gold',
+    color: '#39D4D5',
     fontFamily: 'Montserrat',
     fontWeight: 'bold',
     cursor: 'pointer',
