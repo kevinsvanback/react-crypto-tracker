@@ -48,7 +48,7 @@ const CoinPage = () => {
       fontFamily: 'Montserrat'
     },
     description: {
-      width: '100%',
+      width: '80%',
       fontFamily: 'Montserrat',
       padding: 25,
       paddingBottom: 15,

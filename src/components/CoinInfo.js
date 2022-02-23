@@ -55,7 +55,6 @@ const CoinInfo = (props) => {
 
   const classes = useStyles();
 
-  if (!historicalData) return <LinearProgress style={{ backgroundColor: 'gold' }} />;
 
   return (
     <ThemeProvider theme={darkTheme}>
