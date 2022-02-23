@@ -123,7 +123,6 @@ const CoinPage = () => {
                 {symbol}{' '}{numberWithCommas((coin.market_data.market_cap[currency.toLowerCase()]).toString().slice(0, -6))}M
               </Typography>
             </span>
-
           </div>
         </div>
         <CoinInfo coin={coin} />

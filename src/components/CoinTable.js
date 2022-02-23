@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import { CoinList } from '../config/api';
 import { CryptoState } from '../contexts/CryptoContext';
 import { createTheme, ThemeProvider, Typography, Container, TextField, TableContainer, LinearProgress, Table, TableHead, TableRow, TableCell, TableBody, makeStyles } from '@material-ui/core';
@@ -14,14 +13,16 @@ const CoinTable = () => {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
 
+  const navigate = useNavigate();
+
   const { currency, symbol } = CryptoState();
 
   const fetchCoins = async () => {
     setLoading(true);
 
     const { data } = await axios.get(CoinList(currency));
-    setCoins(data);
 
+    setCoins(data);
     setLoading(false);
   };
 
@@ -85,27 +86,26 @@ const CoinTable = () => {
                 <TableRow>
                   {['Coin', 'Price', '24h Change', 'Market Cap'].map(head => {
                     return (
-                      <TableCell style={{
-                        color: 'black',
-                        fontWeight: '700',
-                        fontFamily: 'Montserrat'
-                      }}
-                        key={head}
-                        align={head === 'Coin' ? '' : 'right'}
-                      >
+                      <TableCell key={head} align={head === 'Coin' ? '' : 'right'}
+                        style={{
+                          color: 'black',
+                          fontWeight: '700',
+                          fontFamily: 'Montserrat'
+                        }}>
                         {head}
                       </TableCell>
                     );
                   })}
                 </TableRow>
               </TableHead>
+
               <TableBody>
                 {/* searchHandler().map */}
                 {coins.slice((page - 1) * 10, (page - 1) * 10 + 10).map(row => {
                   const profit = row.price_change_percentage_24h > 0;
 
                   return (
-                    <TableRow onClick={() => <Navigate to={`/coins/${row.id}`} />} className={classes.row} key={row.name}>
+                    <TableRow onClick={() => navigate(`/coins/${row.id}`)} className={classes.row} key={row.name}>
                       <TableCell component='th' scope='row' style={{
                         display: 'flex',
                         gap: 15
@@ -117,8 +117,7 @@ const CoinTable = () => {
                             style={{
                               textTransform: "uppercase",
                               fontSize: 22,
-                            }}
-                          >
+                            }}>
                             {row.symbol}
                           </span>
                           <span style={{ color: "darkgrey" }}>
@@ -135,8 +134,7 @@ const CoinTable = () => {
                         style={{
                           color: profit > 0 ? "rgb(14, 203, 129)" : "red",
                           fontWeight: 500,
-                        }}
-                      >
+                        }}>
                         {profit && "+"}
                         {row.price_change_percentage_24h.toFixed(2)}%
                       </TableCell>
@@ -144,9 +142,7 @@ const CoinTable = () => {
                         {symbol}{" "}
                         {numberWithCommas(
                           row.market_cap.toString().slice(0, -6)
-                        )}
-                        M
-
+                        )}M
                       </TableCell>
                     </TableRow>
                   );

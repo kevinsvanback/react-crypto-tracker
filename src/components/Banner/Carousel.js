@@ -7,7 +7,7 @@ import { TrendingCoins } from '../../config/api';
 import { CryptoState } from '../../contexts/CryptoContext';
 import AliceCarousel from 'react-alice-carousel';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   carousel: {
     height: '50%',
     display: 'flex',
@@ -37,7 +37,7 @@ const Carousel = () => {
     const { data } = await axios.get(TrendingCoins(currency));
     setTrending(data);
   };
-  console.log(trending);
+
   useEffect(() => {
     fetchTrendingCoins();
   }, [currency]);
