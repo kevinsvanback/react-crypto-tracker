@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CoinList } from '../config/api';
 import { CryptoState } from '../contexts/CryptoContext';
-import { createTheme, ThemeProvider, Typography, Container, TextField, TableContainer, LinearProgress, Table, TableHead, TableRow, TableCell, TableBody, makeStyles } from '@material-ui/core';
+import { createTheme, ThemeProvider, Typography, Container, TextField, TableContainer, LinearProgress, Table, TableHead, TableRow, TableCell, TableBody, makeStyles, Paper } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 
 
@@ -32,6 +32,7 @@ const CoinTable = () => {
 
   console.log(coins);
 
+
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -40,12 +41,6 @@ const CoinTable = () => {
       type: 'dark'
     }
   });
-
-  const searchHandler = () => {
-    return coins.filter(coin => {
-      coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search);
-    });
-  };
 
   const useStyles = makeStyles({
     row: {
@@ -69,24 +64,29 @@ const CoinTable = () => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
+  const searchHandler = () => {
+    return coins.filter(coin => coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search));
+  };
+
+  // if (coins.length === 0) return <LinearProgress style={{ backgroundColor: 'gold' }} />;
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Container style={{ textAlign: 'center' }}>
         <Typography variant='h4' style={{ margin: 18, fontFamily: 'Montserrat' }}>
-          Cryptocurrency prices by market cap
+          Cryptocurrency Prices By Market Cap
         </Typography>
-        <TextField label='Search for a crypto currency' variant='outlined' style={{ marginBottom: 20, width: '100%' }} onChange={(e) => setSearch(e.target.value)} />
+        <TextField label='Search For A Crypto Currency...' variant='outlined' style={{ marginBottom: 20, width: '100%' }} onChange={(e) => setSearch(e.target.value)} />
 
-        <TableContainer>
-          {loading ? (
-            <LinearProgress style={{ backgroundColor: 'gold' }} />
-          ) : (
+        <TableContainer component={Paper}>
+          {loading && <LinearProgress style={{ backgroundColor: 'gold' }} />}
+          {!loading && (
             <Table>
               <TableHead style={{ backgroundColor: '#EEBC1D' }}>
                 <TableRow>
                   {['Coin', 'Price', '24h Change', 'Market Cap'].map(head => {
                     return (
-                      <TableCell key={head} align={head === 'Coin' ? '' : 'right'}
+                      <TableCell key={head} align={head === 'Coin' ? 'left' : 'right'}
                         style={{
                           color: 'black',
                           fontWeight: '700',
@@ -100,8 +100,7 @@ const CoinTable = () => {
               </TableHead>
 
               <TableBody>
-                {/* searchHandler().map */}
-                {coins.slice((page - 1) * 10, (page - 1) * 10 + 10).map(row => {
+                {searchHandler().slice((page - 1) * 10, (page - 1) * 10 + 10).map(row => {
                   const profit = row.price_change_percentage_24h > 0;
 
                   return (
@@ -151,7 +150,7 @@ const CoinTable = () => {
             </Table>
           )}
         </TableContainer>
-        <Pagination count={(coins.length / 10).toFixed(0)} style={{
+        <Pagination count={Number((searchHandler().length / 10).toFixed(0))} style={{
           padding: 20,
           width: '100%',
           display: 'flex',
