@@ -83,7 +83,7 @@ const CoinPage = () => {
   let symbolIsSek;
   symbol === 'SEK' ? symbolIsSek = true : symbolIsSek = false;
 
-  if (!coin) return <LinearProgress style={{ backgroundColor: 'gold' }} />;
+  if (!coin) return <LinearProgress style={{ backgroundColor: '#39D4D5' }} />;
 
   return (
     <>

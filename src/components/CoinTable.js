@@ -85,7 +85,7 @@ const CoinTable = () => {
         <TextField className={classes.searchBar} label='Search For A Crypto Currency...' variant='outlined' onChange={(e) => setSearch(e.target.value)} value={search} />
 
         <TableContainer component={Paper}>
-          {loading && <LinearProgress style={{ backgroundColor: 'gold' }} />}
+          {loading && <LinearProgress style={{ backgroundColor: '#39D4D5' }} />}
           {!loading && (
             <Table>
               <TableHead style={{ backgroundColor: '#39D4D5' }}>
