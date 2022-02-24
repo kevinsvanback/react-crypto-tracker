@@ -39,9 +39,7 @@ const useStyles = makeStyles(() => ({
 
 const Carousel = () => {
   const classes = useStyles();
-
   const [trending, setTrending] = useState([]);
-
   const { currency, symbol } = MyContext();
 
   const fetchTrendingCoins = async () => {

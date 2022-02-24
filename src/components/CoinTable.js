@@ -75,10 +75,8 @@ const useStyles = makeStyles({
 
 const CoinTable = () => {
   const classes = useStyles();
-
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const { currency, symbol, page, setPage, search, setSearch, darkTheme } = MyContext();
 
   const navigate = useNavigate();

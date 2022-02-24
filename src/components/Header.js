@@ -24,9 +24,9 @@ const useStyles = makeStyles(() => ({
 
 const Header = () => {
   const classes = useStyles();
-  const navigate = useNavigate();
-
   const { currency, setCurrency, setPage, setSearch, darkTheme } = MyContext();
+
+  const navigate = useNavigate();
 
   const onClickHandler = () => {
     setPage(1);
@@ -40,9 +40,7 @@ const Header = () => {
         <Container>
           <Toolbar className={classes.toolBar}>
             <Typography className={classes.title} onClick={onClickHandler} variant='h6'>Crypto Tracker</Typography>
-
-            <Select variant="outlined" className={classes.menu}
-              value={currency} onChange={(e) => setCurrency(e.target.value)}>
+            <Select className={classes.menu} variant="outlined" value={currency} onChange={(e) => setCurrency(e.target.value)}>
               <MenuItem value={'SEK'}>SEK</MenuItem>
               <MenuItem value={'USD'}>USD</MenuItem>
             </Select>

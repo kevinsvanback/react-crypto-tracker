@@ -71,8 +71,8 @@ const useStyles = makeStyles((theme) => ({
 const CoinPage = () => {
   const classes = useStyles();
   const [coin, setCoin] = useState();
-  const { id } = useParams();
   const { currency, symbol, darkTheme } = MyContext();
+  const { id } = useParams();
 
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
@@ -91,15 +91,15 @@ const CoinPage = () => {
       <div className={classes.container}>
         <div className={classes.sidebar}>
           <img className={classes.img} src={coin?.image.large} alt={coin?.name} height='200' />
-          <Typography variant='h3' className={classes.heading} >
+          <Typography className={classes.heading} variant='h3' >
             {coin?.name}
           </Typography>
-          <Typography variant='subtitle1' className={classes.description} >
+          <Typography className={classes.description} variant='subtitle1' >
             {parse(coin?.description.en.split('. ')[0])}
           </Typography>
           <div className={classes.marketData} >
             <span className={classes.span}>
-              <Typography variant='h5' className={classes.heading} >
+              <Typography className={classes.heading} variant='h5' >
                 Rank:
               </Typography>
               &nbsp; &nbsp;
@@ -108,7 +108,7 @@ const CoinPage = () => {
               </Typography>
             </span>
             <span className={classes.span}>
-              <Typography variant='h5' className={classes.heading} >
+              <Typography className={classes.heading} variant='h5' >
                 Current Price:
               </Typography>
               &nbsp; &nbsp;
@@ -119,7 +119,7 @@ const CoinPage = () => {
               </Typography>}
             </span>
             <span className={classes.span}>
-              <Typography variant='h5' className={classes.heading} >
+              <Typography className={classes.heading} variant='h5' >
                 Market Cap:
               </Typography>
               &nbsp; &nbsp;

@@ -40,10 +40,8 @@ const useStyles = makeStyles((theme) => ({
 
 const CoinInfo = (props) => {
   const classes = useStyles();
-
   const [historicalData, setHistoricalData] = useState();
   const [days, setDays] = useState(1);
-
   const { currency, darkTheme } = MyContext();
 
   const fetchHistoricalData = async () => {
