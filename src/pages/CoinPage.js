@@ -1,11 +1,11 @@
+import { LinearProgress, makeStyles, ThemeProvider, Typography } from "@material-ui/core";
+import axios from "axios";
+import parse from "html-react-parser";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MyContext } from '../contexts/MyContext';
-import { SingleCoin } from "../config/api";
-import axios from "axios";
-import { ThemeProvider, LinearProgress, makeStyles, Typography } from "@material-ui/core";
 import CoinInfo from "../components/CoinInfo";
-import parse from "html-react-parser";
+import { SingleCoin } from "../config/api";
+import { MyContext } from '../contexts/MyContext';
 import numberWithCommas from '../helpers/numberWithCommas';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,9 +1,9 @@
+import { Container, LinearProgress, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, Typography } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CoinList } from '../config/api';
-import { ThemeProvider, Typography, Container, TextField, TableContainer, LinearProgress, Table, TableHead, TableRow, TableCell, TableBody, makeStyles, Paper } from '@material-ui/core';
-import { Pagination } from '@material-ui/lab';
 import { MyContext } from '../contexts/MyContext';
 import numberWithCommas from '../helpers/numberWithCommas';
 
