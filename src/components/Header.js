@@ -29,7 +29,7 @@ const Header = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  const { currency, setCurrency, setPage } = MyContext();
+  const { currency, setCurrency, setPage, setSearch } = MyContext();
 
   const darkTheme = createTheme({
     palette: {
@@ -45,6 +45,7 @@ const Header = () => {
 
   const onClickHandler = () => {
     setPage(1);
+    setSearch('');
     navigate('/');
   };
 

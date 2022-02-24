@@ -6,6 +6,7 @@ const MyContextProvider = (props) => {
   const [currency, setCurrency] = useState('SEK');
   const [symbol, setSymbol] = useState('SEK');
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     if (currency === 'SEK') setSymbol('SEK');
@@ -13,7 +14,7 @@ const MyContextProvider = (props) => {
   }, [currency]);
 
   return (
-    <myCtx.Provider value={{ currency, setCurrency, symbol, page, setPage }}>
+    <myCtx.Provider value={{ currency, setCurrency, symbol, page, setPage, search, setSearch }}>
       {props.children}
     </myCtx.Provider>
   );

@@ -10,8 +10,8 @@ import { MyContext } from '../contexts/MyContext';
 const CoinTable = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState('');
-  const { currency, symbol, page, setPage } = MyContext();
+
+  const { currency, symbol, page, setPage, search, setSearch } = MyContext();
 
   const navigate = useNavigate();
 
@@ -82,7 +82,7 @@ const CoinTable = () => {
         <Typography variant='h4' style={{ margin: 18 }}>
           Cryptocurrency Prices By Market Cap
         </Typography>
-        <TextField className={classes.searchBar} label='Search For A Crypto Currency...' variant='outlined' onChange={(e) => setSearch(e.target.value)} />
+        <TextField className={classes.searchBar} label='Search For A Crypto Currency...' variant='outlined' onChange={(e) => setSearch(e.target.value)} value={search} />
 
         <TableContainer component={Paper}>
           {loading && <LinearProgress style={{ backgroundColor: 'gold' }} />}
