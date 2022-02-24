@@ -6,15 +6,33 @@ import { createTheme, ThemeProvider, Typography, Container, TextField, TableCont
 import { Pagination } from '@material-ui/lab';
 import { MyContext } from '../contexts/MyContext';
 
+const useStyles = makeStyles({
+  row: {
+    backgroundColor: "#16171a",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#131111",
+    },
+    fontFamily: 'Chakra Petch',
+  },
+  searchBar: {
+    marginBottom: 20,
+    width: '100%',
+  },
+  pagination: {
+    '& .MuiPaginationItem-root': {
+      color: '#39D4D5'
+    }
+  }
+});
 
 const CoinTable = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const { currency, symbol, page, setPage, search, setSearch } = MyContext();
+  const { currency, symbol, page, setPage, search, setSearch, darkTheme } = MyContext();
 
   const navigate = useNavigate();
-
 
   const fetchCoins = async () => {
     setLoading(true);
@@ -28,38 +46,6 @@ const CoinTable = () => {
   useEffect(() => {
     fetchCoins();
   }, [currency]);
-
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: '#fff'
-      },
-      type: 'dark'
-    },
-    typography: {
-      fontFamily: 'Chakra Petch',
-    },
-  });
-
-  const useStyles = makeStyles({
-    row: {
-      backgroundColor: "#16171a",
-      cursor: "pointer",
-      "&:hover": {
-        backgroundColor: "#131111",
-      },
-      fontFamily: 'Chakra Petch',
-    },
-    searchBar: {
-      marginBottom: 20,
-      width: '100%',
-    },
-    pagination: {
-      '& .MuiPaginationItem-root': {
-        color: '#39D4D5'
-      }
-    }
-  });
 
   const classes = useStyles();
 

@@ -16,11 +16,10 @@ const useStyles = makeStyles(() => ({
 }));
 
 const App = () => {
-  const styles = useStyles();
-
+  const classes = useStyles();
 
   return (
-    <div className={styles.App}>
+    <div className={classes.App}>
       <Header />
       <Routes>
         <Route path={'/'} element={<HomePage />} />

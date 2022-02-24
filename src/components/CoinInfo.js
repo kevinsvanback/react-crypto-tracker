@@ -10,11 +10,29 @@ import SelectButton from './SelectButton';
 
 Chart.register(...registerables);
 
+const useStyles = makeStyles((theme) => ({
+  container: {
+    width: '75%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 25,
+    padding: 40,
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+      marginTop: 0,
+      padding: 20,
+      paddingTop: 0
+    }
+  }
+}));
+
 const CoinInfo = (props) => {
   const [historicalData, setHistoricalData] = useState();
   const [days, setDays] = useState(1);
 
-  const { currency } = MyContext();
+  const { currency, darkTheme } = MyContext();
 
   const fetchHistoricalData = async () => {
     const { data } = await axios.get(HistoricalChart(props.coin.id, days, currency));
@@ -28,38 +46,7 @@ const CoinInfo = (props) => {
 
   Chart.defaults.font.family = 'Chakra Petch';
 
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: '#fff'
-      },
-      type: 'dark'
-    },
-    typography: {
-      fontFamily: 'Chakra Petch',
-    },
-  });
-
-  const useStyles = makeStyles((theme) => ({
-    container: {
-      width: '75%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: 25,
-      padding: 40,
-      [theme.breakpoints.down('md')]: {
-        width: '100%',
-        marginTop: 0,
-        padding: 20,
-        paddingTop: 0
-      }
-    }
-  }));
-
   const classes = useStyles();
-
 
   return (
     <ThemeProvider theme={darkTheme}>

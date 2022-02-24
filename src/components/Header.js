@@ -29,19 +29,7 @@ const Header = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  const { currency, setCurrency, setPage, setSearch } = MyContext();
-
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: '#fff',
-      },
-      type: 'dark',
-    },
-    typography: {
-      fontFamily: 'Chakra Petch',
-    },
-  });
+  const { currency, setCurrency, setPage, setSearch, darkTheme } = MyContext();
 
   const onClickHandler = () => {
     setPage(1);

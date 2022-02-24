@@ -7,10 +7,61 @@ import { LinearProgress, makeStyles, Typography } from "@material-ui/core";
 import CoinInfo from "../components/CoinInfo";
 import parse from "html-react-parser";
 
-const CoinPage = () => {
-  const { id } = useParams();
-  const [coin, setCoin] = useState();
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      alignItems: 'center'
+    }
+  },
+  sidebar: {
+    width: '30%',
+    [theme.breakpoints.down('md')]: {
+      width: '100%'
+    },
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: 25,
+    borderRight: '2px solid grey'
+  },
+  heading: {
+    fontWeight: 'bold',
+    marginBottom: 20,
+    fontFamily: 'Chakra Petch'
+  },
+  description: {
+    width: '80%',
+    fontFamily: 'Chakra Petch',
+    padding: 25,
+    paddingBottom: 15,
+    paddingTop: 0,
+    textAlign: 'justify'
+  },
+  marketData: {
+    alignSelf: 'start',
+    padding: 25,
+    paddingTop: 10,
+    width: '100%',
+    [theme.breakpoints.down('md')]: {
+      display: 'flex',
+      justifyContent: 'space-around'
+    },
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      alignItems: 'center'
+    },
+    [theme.breakpoints.down('xs')]: {
+      alignItems: 'start'
+    }
+  },
+}));
 
+const CoinPage = () => {
+  const classes = useStyles();
+  const [coin, setCoin] = useState();
+  const { id } = useParams();
   const { currency, symbol } = MyContext();
 
   const fetchCoin = async () => {
@@ -22,59 +73,6 @@ const CoinPage = () => {
   useEffect(() => {
     fetchCoin();
   }, []);
-
-  const useStyles = makeStyles((theme) => ({
-    container: {
-      display: 'flex',
-      [theme.breakpoints.down('md')]: {
-        flexDirection: 'column',
-        alignItems: 'center'
-      }
-    },
-    sidebar: {
-      width: '30%',
-      [theme.breakpoints.down('md')]: {
-        width: '100%'
-      },
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      marginTop: 25,
-      borderRight: '2px solid grey'
-    },
-    heading: {
-      fontWeight: 'bold',
-      marginBottom: 20,
-      fontFamily: 'Chakra Petch'
-    },
-    description: {
-      width: '80%',
-      fontFamily: 'Chakra Petch',
-      padding: 25,
-      paddingBottom: 15,
-      paddingTop: 0,
-      textAlign: 'justify'
-    },
-    marketData: {
-      alignSelf: 'start',
-      padding: 25,
-      paddingTop: 10,
-      width: '100%',
-      [theme.breakpoints.down('md')]: {
-        display: 'flex',
-        justifyContent: 'space-around'
-      },
-      [theme.breakpoints.down('sm')]: {
-        flexDirection: 'column',
-        alignItems: 'center'
-      },
-      [theme.breakpoints.down('xs')]: {
-        alignItems: 'start'
-      }
-    },
-  }));
-
-  const classes = useStyles();
 
   const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
