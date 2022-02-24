@@ -39,7 +39,9 @@ const Header = () => {
       <AppBar color="transparent" position="static">
         <Container>
           <Toolbar className={classes.toolBar}>
-            <Typography className={classes.title} onClick={onClickHandler} variant='h6'>Crypto Tracker</Typography>
+            <Typography className={classes.title} onClick={onClickHandler} variant='h6'>
+              Crypto Tracker
+            </Typography>
             <Select className={classes.menu} variant="outlined" value={currency} onChange={(e) => setCurrency(e.target.value)}>
               <MenuItem value={'SEK'}>SEK</MenuItem>
               <MenuItem value={'USD'}>USD</MenuItem>

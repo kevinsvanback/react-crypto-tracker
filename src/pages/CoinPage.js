@@ -61,7 +61,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex'
   },
   img: {
-    marginBottom: 20
+    marginBottom: 20,
+    height: 200
   },
   linearProgress: {
     backgroundColor: '#39D4D5'
@@ -90,7 +91,7 @@ const CoinPage = () => {
     <ThemeProvider theme={darkTheme}>
       <div className={classes.container}>
         <div className={classes.sidebar}>
-          <img className={classes.img} src={coin?.image.large} alt={coin?.name} height='200' />
+          <img className={classes.img} src={coin?.image.large} alt={coin?.name} />
           <Typography className={classes.heading} variant='h3' >
             {coin?.name}
           </Typography>
@@ -112,22 +113,26 @@ const CoinPage = () => {
                 Current Price:
               </Typography>
               &nbsp; &nbsp;
-              {symbol === 'SEK' ? <Typography variant='h5' >
-                {numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])} {symbol}
-              </Typography> : <Typography variant='h5' >
-                {symbol}{numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])}
-              </Typography>}
+              {symbol === 'SEK' ?
+                <Typography variant='h5' >
+                  {numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])} {symbol}
+                </Typography> :
+                <Typography variant='h5' >
+                  {symbol}{numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])}
+                </Typography>}
             </span>
             <span className={classes.span}>
               <Typography className={classes.heading} variant='h5' >
                 Market Cap:
               </Typography>
               &nbsp; &nbsp;
-              {symbol === 'SEK' ? <Typography variant='h5' >
-                {numberWithCommas((coin.market_data.market_cap[currency.toLowerCase()]).toString().slice(0, -6))} M{symbol}
-              </Typography> : <Typography variant='h5' >
-                {symbol}{numberWithCommas((coin.market_data.market_cap[currency.toLowerCase()]).toString().slice(0, -6))} M
-              </Typography>}
+              {symbol === 'SEK' ?
+                <Typography variant='h5' >
+                  {numberWithCommas((coin.market_data.market_cap[currency.toLowerCase()]).toString().slice(0, -6))} M{symbol}
+                </Typography> :
+                <Typography variant='h5' >
+                  {symbol}{numberWithCommas((coin.market_data.market_cap[currency.toLowerCase()]).toString().slice(0, -6))} M
+                </Typography>}
             </span>
           </div>
         </div>
