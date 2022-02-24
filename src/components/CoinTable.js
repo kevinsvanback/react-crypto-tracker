@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CoinList } from '../config/api';
-import { createTheme, ThemeProvider, Typography, Container, TextField, TableContainer, LinearProgress, Table, TableHead, TableRow, TableCell, TableBody, makeStyles, Paper } from '@material-ui/core';
+import { ThemeProvider, Typography, Container, TextField, TableContainer, LinearProgress, Table, TableHead, TableRow, TableCell, TableBody, makeStyles, Paper } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import { MyContext } from '../contexts/MyContext';
+import numberWithCommas from '../helpers/numberWithCommas';
 
 const useStyles = makeStyles({
   row: {
@@ -49,18 +50,9 @@ const CoinTable = () => {
 
   const classes = useStyles();
 
-  const numberWithCommas = (x) => {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  };
-
   const searchHandler = () => {
     return coins.filter(coin => coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search));
   };
-
-  // if (coins.length === 0) return <LinearProgress style={{ backgroundColor: 'gold' }} />;
-
-  let symbolIsSek;
-  symbol === 'SEK' ? symbolIsSek = true : symbolIsSek = false;
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -120,7 +112,7 @@ const CoinTable = () => {
                         </div>
                       </TableCell>
                       <TableCell align="right">
-                        {symbolIsSek ? <>{numberWithCommas(row.current_price.toFixed(2))} {symbol}</> : <>{symbol}{numberWithCommas(row.current_price.toFixed(2))}</>}
+                        {symbol === 'SEK' ? <>{numberWithCommas(row.current_price.toFixed(2))} {symbol}</> : <>{symbol}{numberWithCommas(row.current_price.toFixed(2))}</>}
                       </TableCell>
                       <TableCell
                         align="right"
@@ -132,7 +124,7 @@ const CoinTable = () => {
                         {row.price_change_percentage_24h.toFixed(2)}%
                       </TableCell>
                       <TableCell align="right">
-                        {symbolIsSek ? <>{numberWithCommas(row.market_cap.toString().slice(0, -6))} M{symbol}</> : <>{symbol}{numberWithCommas(row.market_cap.toString().slice(0, -6))} M</>}
+                        {symbol === 'SEK' ? <>{numberWithCommas(row.market_cap.toString().slice(0, -6))} M{symbol}</> : <>{symbol}{numberWithCommas(row.market_cap.toString().slice(0, -6))} M</>}
                       </TableCell>
                     </TableRow>
                   );

@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { MyContext } from '../contexts/MyContext';
 import { SingleCoin } from "../config/api";
 import axios from "axios";
-import { LinearProgress, makeStyles, Typography } from "@material-ui/core";
+import { ThemeProvider, LinearProgress, makeStyles, Typography } from "@material-ui/core";
 import CoinInfo from "../components/CoinInfo";
 import parse from "html-react-parser";
+import numberWithCommas from '../helpers/numberWithCommas';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -56,13 +57,22 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'start'
     }
   },
+  span: {
+    display: 'flex'
+  },
+  img: {
+    marginBottom: 20
+  },
+  linearProgress: {
+    backgroundColor: '#39D4D5'
+  }
 }));
 
 const CoinPage = () => {
   const classes = useStyles();
   const [coin, setCoin] = useState();
   const { id } = useParams();
-  const { currency, symbol } = MyContext();
+  const { currency, symbol, darkTheme } = MyContext();
 
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
@@ -74,20 +84,13 @@ const CoinPage = () => {
     fetchCoin();
   }, []);
 
-  const numberWithCommas = (x) => {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  };
-
-  let symbolIsSek;
-  symbol === 'SEK' ? symbolIsSek = true : symbolIsSek = false;
-
-  if (!coin) return <LinearProgress style={{ backgroundColor: '#39D4D5' }} />;
+  if (!coin) return <LinearProgress className={classes.linearProgress} />;
 
   return (
-    <>
+    <ThemeProvider theme={darkTheme}>
       <div className={classes.container}>
         <div className={classes.sidebar}>
-          <img src={coin?.image.large} alt={coin?.name} height='200' style={{ marginBottom: 20 }} />
+          <img className={classes.img} src={coin?.image.large} alt={coin?.name} height='200' />
           <Typography variant='h3' className={classes.heading} >
             {coin?.name}
           </Typography>
@@ -95,34 +98,34 @@ const CoinPage = () => {
             {parse(coin?.description.en.split('. ')[0])}
           </Typography>
           <div className={classes.marketData} >
-            <span style={{ display: 'flex' }}>
+            <span className={classes.span}>
               <Typography variant='h5' className={classes.heading} >
                 Rank:
               </Typography>
               &nbsp; &nbsp;
-              <Typography variant='h5' style={{ fontFamily: 'Chakra Petch' }}>
+              <Typography variant='h5' >
                 {coin?.market_cap_rank}
               </Typography>
             </span>
-            <span style={{ display: 'flex' }}>
+            <span className={classes.span}>
               <Typography variant='h5' className={classes.heading} >
                 Current Price:
               </Typography>
               &nbsp; &nbsp;
-              {symbolIsSek ? <Typography variant='h5' style={{ fontFamily: 'Chakra Petch' }}>
+              {symbol === 'SEK' ? <Typography variant='h5' >
                 {numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])} {symbol}
-              </Typography> : <Typography variant='h5' style={{ fontFamily: 'Chakra Petch' }}>
+              </Typography> : <Typography variant='h5' >
                 {symbol}{numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])}
               </Typography>}
             </span>
-            <span style={{ display: 'flex' }}>
+            <span className={classes.span}>
               <Typography variant='h5' className={classes.heading} >
                 Market Cap:
               </Typography>
               &nbsp; &nbsp;
-              {symbolIsSek ? <Typography variant='h5' style={{ fontFamily: 'Chakra Petch' }}>
+              {symbol === 'SEK' ? <Typography variant='h5' >
                 {numberWithCommas((coin.market_data.market_cap[currency.toLowerCase()]).toString().slice(0, -6))} M{symbol}
-              </Typography> : <Typography variant='h5' style={{ fontFamily: 'Chakra Petch' }}>
+              </Typography> : <Typography variant='h5' >
                 {symbol}{numberWithCommas((coin.market_data.market_cap[currency.toLowerCase()]).toString().slice(0, -6))} M
               </Typography>}
             </span>
@@ -130,7 +133,7 @@ const CoinPage = () => {
         </div>
         <CoinInfo coin={coin} />
       </div>
-    </>
+    </ThemeProvider>
   );
 };
 

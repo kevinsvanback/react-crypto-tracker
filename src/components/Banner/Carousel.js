@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { TrendingCoins } from '../../config/api';
 import { MyContext } from '../../contexts/MyContext';
 import AliceCarousel from 'react-alice-carousel';
+import numberWithCommas from '../../helpers/numberWithCommas';
 
 const useStyles = makeStyles(() => ({
   carousel: {
@@ -22,10 +23,6 @@ const useStyles = makeStyles(() => ({
     fontFamily: 'Chakra Petch'
   }
 }));
-
-const numberWithCommas = (x) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
 
 const Carousel = () => {
   const [trending, setTrending] = useState([]);
