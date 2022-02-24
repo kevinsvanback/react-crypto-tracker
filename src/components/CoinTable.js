@@ -82,7 +82,10 @@ const CoinTable = () => {
         <Typography variant='h4' style={{ margin: 18 }}>
           Cryptocurrency Prices By Market Cap
         </Typography>
-        <TextField className={classes.searchBar} label='Search For A Crypto Currency...' variant='outlined' onChange={(e) => setSearch(e.target.value)} value={search} />
+        <TextField className={classes.searchBar} label='Search For A Crypto Currency...' variant='outlined' onChange={(e) => {
+          setSearch(e.target.value);
+          setPage(1);
+        }} value={search} />
 
         <TableContainer component={Paper}>
           {loading && <LinearProgress style={{ backgroundColor: '#39D4D5' }} />}
