@@ -9,6 +9,7 @@ import { MyContext } from '../contexts/MyContext';
 import SelectButton from './SelectButton';
 
 Chart.register(...registerables);
+Chart.defaults.font.family = 'Chakra Petch';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -25,10 +26,21 @@ const useStyles = makeStyles((theme) => ({
       padding: 20,
       paddingTop: 0
     }
+  },
+  circularProgress: {
+    color: '#39D4D5'
+  },
+  selectButtonsContainer: {
+    display: 'flex',
+    marginTop: 20,
+    justifyContent: 'space-around',
+    width: '100%',
   }
 }));
 
 const CoinInfo = (props) => {
+  const classes = useStyles();
+
   const [historicalData, setHistoricalData] = useState();
   const [days, setDays] = useState(1);
 
@@ -44,14 +56,10 @@ const CoinInfo = (props) => {
     fetchHistoricalData();
   }, [currency, days]);
 
-  Chart.defaults.font.family = 'Chakra Petch';
-
-  const classes = useStyles();
-
   return (
     <ThemeProvider theme={darkTheme}>
       <div className={classes.container}>
-        {!historicalData ? <CircularProgress style={{ color: '#39D4D5' }} size={250} thickness={1} />
+        {!historicalData ? <CircularProgress className={classes.circularProgress} size={250} thickness={1} />
           : (
             <>
               <Line
@@ -62,7 +70,6 @@ const CoinInfo = (props) => {
 
                     return days === 1 ? time : date.toLocaleDateString();
                   }),
-
                   datasets: [{
                     data: historicalData.map(coin => coin[1]),
                     label: `Price (Past ${days} Days) in ${currency}`,
@@ -77,15 +84,8 @@ const CoinInfo = (props) => {
                   }
                 }}
               />
-              <div style={{
-                display: 'flex',
-                marginTop: 20,
-                justifyContent: 'space-around',
-                width: '100%',
-              }}>
-                {chartDays.map(day => (
-                  <SelectButton key={day.value} onClick={() => setDays(day.value)} selected={day.value === days} >{day.label}</SelectButton>
-                ))}
+              <div className={classes.selectButtonsContainer}>
+                {chartDays.map(day => (<SelectButton key={day.value} onClick={() => setDays(day.value)} selected={day.value === days}>{day.label}</SelectButton>))}
               </div>
             </>
           )}
