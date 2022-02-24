@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar, Typography, Select, MenuItem, makeStyles, createTheme, ThemeProvider } from "@material-ui/core";
+import { AppBar, Container, Toolbar, Typography, Select, MenuItem, makeStyles, ThemeProvider } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from '../contexts/MyContext';
 
@@ -8,14 +8,11 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between'
   },
   title: {
-    // color: '#39D4D5',
     color: '#fff',
-    // fontFamily: 'Montserrat',
     fontFamily: 'Chakra Petch',
     fontWeight: 'bold',
     cursor: 'pointer',
     marginLeft: 15,
-    // textShadow: '0 0 11px #0ff'
   },
   menu: {
     width: 100,
