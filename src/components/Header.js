@@ -8,16 +8,20 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between'
   },
   title: {
-    color: '#39D4D5',
-    fontFamily: 'Montserrat',
+    // color: '#39D4D5',
+    color: '#fff',
+    // fontFamily: 'Montserrat',
+    fontFamily: 'Chakra Petch',
     fontWeight: 'bold',
     cursor: 'pointer',
-    marginLeft: 15
+    marginLeft: 15,
+    // textShadow: '0 0 11px #0ff'
   },
   menu: {
     width: 100,
     height: 40,
     marginRight: 15,
+    fontFamily: 'Chakra Petch',
   }
 }));
 
@@ -34,6 +38,9 @@ const Header = () => {
       },
       type: 'dark',
     },
+    typography: {
+      fontFamily: 'Chakra Petch',
+    },
   });
 
   const onClickHandler = () => {
@@ -46,7 +53,6 @@ const Header = () => {
       <AppBar color="transparent" position="static">
         <Container>
           <Toolbar className={classes.toolBar}>
-            {/* <Typography className={classes.title} onClick={() => navigate('/')} variant='h6'>Crypto Tracker</Typography> */}
             <Typography className={classes.title} onClick={onClickHandler} variant='h6'>Crypto Tracker</Typography>
 
             <Select variant="outlined" className={classes.menu}

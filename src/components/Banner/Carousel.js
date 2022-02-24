@@ -18,7 +18,8 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     cursor: 'pointer',
     textTransform: 'uppercase',
-    color: 'white'
+    color: 'white',
+    fontFamily: 'Chakra Petch'
   }
 }));
 

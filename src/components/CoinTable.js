@@ -35,7 +35,10 @@ const CoinTable = () => {
         main: '#fff'
       },
       type: 'dark'
-    }
+    },
+    typography: {
+      fontFamily: 'Chakra Petch',
+    },
   });
 
   const useStyles = makeStyles({
@@ -45,7 +48,11 @@ const CoinTable = () => {
       "&:hover": {
         backgroundColor: "#131111",
       },
-      fontFamily: "Montserrat",
+      fontFamily: 'Chakra Petch',
+    },
+    searchBar: {
+      marginBottom: 20,
+      width: '100%',
     },
     pagination: {
       '& .MuiPaginationItem-root': {
@@ -72,10 +79,10 @@ const CoinTable = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Container style={{ textAlign: 'center' }}>
-        <Typography variant='h4' style={{ margin: 18, fontFamily: 'Montserrat' }}>
+        <Typography variant='h4' style={{ margin: 18 }}>
           Cryptocurrency Prices By Market Cap
         </Typography>
-        <TextField label='Search For A Crypto Currency...' variant='outlined' style={{ marginBottom: 20, width: '100%' }} onChange={(e) => setSearch(e.target.value)} />
+        <TextField className={classes.searchBar} label='Search For A Crypto Currency...' variant='outlined' onChange={(e) => setSearch(e.target.value)} />
 
         <TableContainer component={Paper}>
           {loading && <LinearProgress style={{ backgroundColor: 'gold' }} />}
@@ -89,7 +96,7 @@ const CoinTable = () => {
                         style={{
                           color: 'black',
                           fontWeight: '700',
-                          fontFamily: 'Montserrat'
+                          fontFamily: 'Chakra Petch'
                         }}>
                         {head}
                       </TableCell>

@@ -35,14 +35,17 @@ const Banner = () => {
           <Typography variant='h2' style={{
             fontWeight: 'bold',
             marginBottom: 15,
-            fontFamily: 'Montserrat'
+            fontFamily: 'Chakra Petch',
+            textShadow: '0 0 11px #0ff'
           }}>
             Crypto Tracker
           </Typography>
           <Typography variant='subtitle2' style={{
-            color: 'darkgrey',
+            color: 'white',
+            fontWeight: 'bold',
             textTransform: 'capitalize',
-            fontFamily: 'Montserrat'
+            fontFamily: 'Chakra Petch',
+            textShadow: '0 0 11px #0ff'
           }}>
             Get all the info regarding your favorite crypto currency
           </Typography>

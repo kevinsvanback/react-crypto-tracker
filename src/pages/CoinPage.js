@@ -45,11 +45,11 @@ const CoinPage = () => {
     heading: {
       fontWeight: 'bold',
       marginBottom: 20,
-      fontFamily: 'Montserrat'
+      fontFamily: 'Chakra Petch'
     },
     description: {
       width: '80%',
-      fontFamily: 'Montserrat',
+      fontFamily: 'Chakra Petch',
       padding: 25,
       paddingBottom: 15,
       paddingTop: 0,
@@ -80,6 +80,9 @@ const CoinPage = () => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
+  let symbolIsSek;
+  symbol === 'SEK' ? symbolIsSek = true : symbolIsSek = false;
+
   if (!coin) return <LinearProgress style={{ backgroundColor: 'gold' }} />;
 
   return (
@@ -99,7 +102,7 @@ const CoinPage = () => {
                 Rank:
               </Typography>
               &nbsp; &nbsp;
-              <Typography variant='h5' style={{ fontFamily: 'Montserrat' }}>
+              <Typography variant='h5' style={{ fontFamily: 'Chakra Petch' }}>
                 {coin?.market_cap_rank}
               </Typography>
             </span>
@@ -108,18 +111,22 @@ const CoinPage = () => {
                 Current Price:
               </Typography>
               &nbsp; &nbsp;
-              <Typography variant='h5' style={{ fontFamily: 'Montserrat' }}>
-                {symbol}{' '}{numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])}
-              </Typography>
+              {symbolIsSek ? <Typography variant='h5' style={{ fontFamily: 'Chakra Petch' }}>
+                {numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])} {symbol}
+              </Typography> : <Typography variant='h5' style={{ fontFamily: 'Chakra Petch' }}>
+                {symbol}{numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])}
+              </Typography>}
             </span>
             <span style={{ display: 'flex' }}>
               <Typography variant='h5' className={classes.heading} >
                 Market Cap:
               </Typography>
               &nbsp; &nbsp;
-              <Typography variant='h5' style={{ fontFamily: 'Montserrat' }}>
-                {symbol}{' '}{numberWithCommas((coin.market_data.market_cap[currency.toLowerCase()]).toString().slice(0, -6))}M
-              </Typography>
+              {symbolIsSek ? <Typography variant='h5' style={{ fontFamily: 'Chakra Petch' }}>
+                {numberWithCommas((coin.market_data.market_cap[currency.toLowerCase()]).toString().slice(0, -6))} M{symbol}
+              </Typography> : <Typography variant='h5' style={{ fontFamily: 'Chakra Petch' }}>
+                {symbol}{numberWithCommas((coin.market_data.market_cap[currency.toLowerCase()]).toString().slice(0, -6))} M
+              </Typography>}
             </span>
           </div>
         </div>

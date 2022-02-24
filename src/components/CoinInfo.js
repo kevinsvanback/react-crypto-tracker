@@ -26,13 +26,18 @@ const CoinInfo = (props) => {
     fetchHistoricalData();
   }, [currency, days]);
 
+  Chart.defaults.font.family = 'Chakra Petch';
+
   const darkTheme = createTheme({
     palette: {
       primary: {
         main: '#fff'
       },
       type: 'dark'
-    }
+    },
+    typography: {
+      fontFamily: 'Chakra Petch',
+    },
   });
 
   const useStyles = makeStyles((theme) => ({
@@ -90,7 +95,7 @@ const CoinInfo = (props) => {
               display: 'flex',
               marginTop: 20,
               justifyContent: 'space-around',
-              width: '100%'
+              width: '100%',
             }}>
               {chartDays.map(day => (
                 <SelectButton key={day.value} onClick={() => setDays(day.value)} selected={day.value === days} >{day.label}</SelectButton>
