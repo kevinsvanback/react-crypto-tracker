@@ -92,7 +92,8 @@ const CoinTable = () => {
 
   useEffect(() => {
     fetchCoins();
-  }, [fetchCoins, currency]);
+    // eslint-disable-next-line
+  }, [currency]);
 
   const searchHandler = () => {
     return coins.filter(coin => coin.name.toLowerCase().includes(search) || coin.symbol.toLowerCase().includes(search));

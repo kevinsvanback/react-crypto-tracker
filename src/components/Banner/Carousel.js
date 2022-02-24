@@ -50,7 +50,8 @@ const Carousel = () => {
 
   useEffect(() => {
     fetchTrendingCoins();
-  }, [fetchTrendingCoins, currency]);
+    // eslint-disable-next-line
+  }, [currency]);
 
   const items = trending.map(coin => {
     profit = coin.price_change_percentage_24h >= 0;

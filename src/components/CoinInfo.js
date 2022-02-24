@@ -52,7 +52,8 @@ const CoinInfo = (props) => {
 
   useEffect(() => {
     fetchHistoricalData();
-  }, [fetchHistoricalData, currency, days]);
+    // eslint-disable-next-line
+  }, [currency, days]);
 
   return (
     <ThemeProvider theme={darkTheme}>

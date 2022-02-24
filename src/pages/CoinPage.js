@@ -83,7 +83,8 @@ const CoinPage = () => {
 
   useEffect(() => {
     fetchCoin();
-  }, [fetchCoin]);
+    // eslint-disable-next-line
+  }, []);
 
   if (!coin) return <LinearProgress className={classes.linearProgress} />;
 
