@@ -83,7 +83,7 @@ const CoinPage = () => {
 
   useEffect(() => {
     fetchCoin();
-  }, []);
+  }, [fetchCoin]);
 
   if (!coin) return <LinearProgress className={classes.linearProgress} />;
 

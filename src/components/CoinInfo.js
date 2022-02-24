@@ -52,7 +52,7 @@ const CoinInfo = (props) => {
 
   useEffect(() => {
     fetchHistoricalData();
-  }, [currency, days]);
+  }, [fetchHistoricalData, currency, days]);
 
   return (
     <ThemeProvider theme={darkTheme}>
