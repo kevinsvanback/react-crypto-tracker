@@ -9,14 +9,21 @@ import numberWithCommas from '../helpers/numberWithCommas';
 
 let profit;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   row: {
+    fontFamily: 'Chakra Petch',
     backgroundColor: "#16171a",
     cursor: "pointer",
     "&:hover": {
       backgroundColor: "#131111",
     },
-    fontFamily: 'Chakra Petch',
+    [theme.breakpoints.down('sm')]: {
+      "& .MuiTableCell-root": {
+        padding: 0,
+        paddingTop: 10,
+        paddingBottom: 10
+      }
+    },
   },
   searchBar: {
     marginBottom: 20,
@@ -32,7 +39,7 @@ const useStyles = makeStyles({
     }
   },
   container: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   typography: {
     margin: 18
@@ -50,15 +57,25 @@ const useStyles = makeStyles({
   },
   coinCell: {
     display: 'flex',
-    gap: 15
+    gap: 15,
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      textAlign: 'center',
+      gap: 0,
+    },
   },
   coinCellImage: {
     marginBottom: 10,
-    height: 50
+    height: 50,
   },
   coinCellContainer: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    [theme.breakpoints.down('sm')]: {
+      alignItems: 'center',
+    },
+
   },
   coinCellSymbol: {
     textTransform: "uppercase",
@@ -71,7 +88,7 @@ const useStyles = makeStyles({
     color: profit > 0 ? "rgb(14, 203, 129)" : "red",
     fontWeight: 500,
   }
-});
+}));
 
 const CoinTable = () => {
   const classes = useStyles();
