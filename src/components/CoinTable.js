@@ -158,6 +158,7 @@ const CoinTable = () => {
 
         <Pagination className={classes.pagination}
           count={Number((searchHandler().length / 10).toFixed(0))}
+          siblingCount={0}
           page={page}
           onChange={(_, value) => {
             setPage(value);
