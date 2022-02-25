@@ -26,6 +26,7 @@ const useStyles = makeStyles(() => ({
   },
   img: {
     marginBottom: 10,
+    marginTop: 20,
     height: 80
   },
   changePercentage: {

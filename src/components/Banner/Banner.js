@@ -2,7 +2,7 @@ import { Container, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import Carousel from './Carousel';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   banner: {
     backgroundImage: 'url(./banner.jpg)',
     backgroundSize: 'cover',
@@ -26,7 +26,10 @@ const useStyles = makeStyles(() => ({
     fontWeight: 'bold',
     marginBottom: 15,
     fontFamily: 'Chakra Petch',
-    textShadow: '0 0 11px #0ff'
+    textShadow: '0 0 11px #0ff',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 35,
+    },
   },
   subtitle: {
     color: 'white',
