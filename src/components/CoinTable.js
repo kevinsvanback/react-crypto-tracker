@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     '& .MuiPaginationItem-root': {
       color: '#39D4D5'
-    }
+    },
   },
   container: {
     textAlign: 'center',
@@ -65,6 +65,9 @@ const useStyles = makeStyles(theme => ({
   coinCellImage: {
     marginBottom: 10,
     height: 50,
+    [theme.breakpoints.down('sm')]: {
+      height: 30,
+    },
   },
   coinCellContainer: {
     display: "flex",
@@ -77,9 +80,15 @@ const useStyles = makeStyles(theme => ({
   coinCellSymbol: {
     textTransform: "uppercase",
     fontSize: 22,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 15,
+    },
   },
   coinCellName: {
-    color: "darkgrey"
+    color: "darkgrey",
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 10,
+    },
   },
   changePercentage: {
     color: profit > 0 ? "rgb(14, 203, 129)" : "red",
@@ -170,7 +179,6 @@ const CoinTable = () => {
           count={Number((searchHandler().length / 10).toFixed(0))}
           siblingCount={0}
           page={page}
-          size='large'
           onChange={(_, value) => {
             setPage(value);
             window.scroll(0, 450);
