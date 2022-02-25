@@ -170,6 +170,7 @@ const CoinTable = () => {
           count={Number((searchHandler().length / 10).toFixed(0))}
           siblingCount={0}
           page={page}
+          size='large'
           onChange={(_, value) => {
             setPage(value);
             window.scroll(0, 450);
