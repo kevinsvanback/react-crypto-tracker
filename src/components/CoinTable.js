@@ -1,4 +1,4 @@
-import { Container, LinearProgress, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, Typography } from '@material-ui/core';
+import { Container, LinearProgress, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, ThemeProvider, Typography } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { CoinList } from '../config/api';
 import { MyContext } from '../contexts/MyContext';
 import numberWithCommas from '../helpers/numberWithCommas';
+import SearchBar from './SearchBar';
 
 let profit;
 
@@ -24,10 +25,6 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: 10
       }
     },
-  },
-  searchBar: {
-    marginBottom: 20,
-    width: '100%',
   },
   pagination: {
     padding: 20,
@@ -94,7 +91,7 @@ const CoinTable = () => {
   const classes = useStyles();
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { currency, symbol, page, setPage, search, setSearch, darkTheme } = MyContext();
+  const { currency, symbol, page, setPage, search, darkTheme } = MyContext();
 
   const navigate = useNavigate();
 
@@ -119,15 +116,11 @@ const CoinTable = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Container className={classes.container}>
-
         <Typography className={classes.typography} variant='h4'>
           Cryptocurrency Prices By Market Cap
         </Typography>
 
-        <TextField className={classes.searchBar} label='Search For A Crypto Currency...' variant='outlined' value={search} onChange={(e) => {
-          setSearch(e.target.value);
-          setPage(1);
-        }} />
+        <SearchBar />
 
         <TableContainer component={Paper}>
           {loading && <LinearProgress className={classes.linearProgress} />}
