@@ -5,19 +5,18 @@ import { MyContext } from '../contexts/MyContext';
 const useStyles = makeStyles(() => ({
   toolBar: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    padding: 0
   },
   title: {
     color: '#fff',
     fontFamily: 'Chakra Petch',
     fontWeight: 'bold',
     cursor: 'pointer',
-    marginLeft: 15,
   },
   menu: {
     width: 100,
     height: 40,
-    marginRight: 15,
     fontFamily: 'Chakra Petch',
   }
 }));
