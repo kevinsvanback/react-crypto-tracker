@@ -1,4 +1,4 @@
-React Crypto Tracker App
+A crypto tracker app build with React
 
 Live demo: https://kevinsvanback-react-crypto-tracker.netlify.app/
 
